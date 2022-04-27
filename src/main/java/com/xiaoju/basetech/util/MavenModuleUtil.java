@@ -27,9 +27,10 @@ public class MavenModuleUtil {
 
     public void addMavenModule(CoverageReportEntity coverageReport) {
         try {
-            String pomPath = coverageReport.getNowLocalPath() + "/pom.xml";
+            String pomPath = coverageReport.getNowLocalPath() + coverageReport.getExtPath()+ "/pom.xml";
             File pomFile = new File(pomPath);
             if (!pomFile.exists()) {
+
                 coverageReport.setRequestStatus(Constants.JobStatus.FAILADDMODULE.val());
                 return;
             }

@@ -12,5 +12,6 @@ public class EnvCoverRequest extends CoverBaseRequest{
 
     private String address;
     private int port;
+    private String extPath;
 
 }

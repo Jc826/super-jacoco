@@ -255,7 +255,7 @@ public class CodeCovServiceImpl implements CodeCovService {
         DeployInfoEntity deployInfo = new DeployInfoEntity();
         deployInfo.setUuid(coverageReport.getUuid());
         deployInfo.setCodePath(coverageReport.getNowLocalPath());
-        String pomPath = deployInfo.getCodePath() + "/pom.xml";
+        String pomPath = deployInfo.getCodePath()+coverageReport.getExtPath() + "/pom.xml";
         ArrayList<String> moduleList = MavenModuleUtil.getValidModules(pomPath);
         StringBuilder moduleNames = new StringBuilder("");
         for (String module : moduleList) {
@@ -283,7 +283,7 @@ public class CodeCovServiceImpl implements CodeCovService {
             coverageReport.setGitUrl(envCoverRequest.getGitUrl());
             coverageReport.setNowVersion(envCoverRequest.getNowVersion());
             coverageReport.setType(envCoverRequest.getType());
-
+			coverageReport.setExtPath(envCoverRequest.getExtPath());
             if (!StringUtils.isEmpty(envCoverRequest.getBaseVersion())) {
                 coverageReport.setBaseVersion(envCoverRequest.getBaseVersion());
             }
