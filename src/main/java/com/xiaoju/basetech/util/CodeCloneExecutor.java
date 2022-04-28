@@ -47,9 +47,11 @@ public class CodeCloneExecutor {
             if (coverageReport.getType() == Constants.ReportType.DIFF.val()) {
                 String baseLocalPath = CODE_ROOT + uuid + "/" + coverageReport.getBaseVersion().replace("/", "_");
                 coverageReport.setBaseLocalPath(baseLocalPath);
+
                 gitHandler.cloneRepository(gitUrl, baseLocalPath, coverageReport.getBaseVersion());
             }
             log.info("uuid {}完成下载代码...", uuid);
+            log.info("uuid {}完成下载代码 代码baseLocalPath{}...", uuid,nowLocalPath);
             coverageReport.setRequestStatus(Constants.JobStatus.CLONE_DONE.val());
         } catch (Exception e) {
             log.error("下载代码发生异常:{}", coverageReport.getUuid(), e);

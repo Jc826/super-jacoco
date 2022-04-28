@@ -341,7 +341,11 @@ public class CodeCovServiceImpl implements CodeCovService {
         }
 
         try {
-            int exitCode = CmdExecutor.executeCmd(new String[]{"cd " + coverageReport.getNowLocalPath() + "&&java -jar " +
+            String[] ss=new String[]{"cd " + coverageReport.getNowLocalPath()+coverageReport.getExtPath() + "&&java -jar " +
+                    JACOCO_PATH + " dump --address " + deployInfoEntity.getAddress() + " --port " +
+                    deployInfoEntity.getPort() + " --destfile ./jacoco.exec"};
+            System.out.println("------------》的执行轨迹.exec文件 输出执行jacoco 命令"+ss.toString());
+            int exitCode = CmdExecutor.executeCmd(new String[]{"cd " + coverageReport.getNowLocalPath()+coverageReport.getExtPath() + "&&java -jar " +
                     JACOCO_PATH + " dump --address " + deployInfoEntity.getAddress() + " --port " +
                     deployInfoEntity.getPort() + " --destfile ./jacoco.exec"}, CMD_TIMEOUT);
 
